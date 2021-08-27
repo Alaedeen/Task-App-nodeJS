@@ -3,14 +3,8 @@
     "printWidth": 80,
     "tabWidth": 2,    
     "singleQuote": true, 
-  
-    "trailingComma": "none",
-    
+    "trailingComma": "es5",
     "jsxBracketSameLine": false,
-  
-    "parser": "babylon",
-    
-    "noSemi": true,
-   
-    "rcVerbose": true
+    "parser": "babel",
+    "semi": false
 }

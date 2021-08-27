@@ -1,34 +1,48 @@
-const express = require('express')
-const auth = require('../middleware/auth');
-const {createUser,uploadUserAvatar, deleteUserAvatar, login,
-     logout, logoutAll, getCurrentUser, getUserById,
-     updateUser, deleteUser, getAvatarByUserId} = require('../services/user-service')
-const {avatarUploader, fileUploadErrorHanler} = require('../utils/user-utils')
+import express from 'express'
+import { auth } from '../middleware/auth.js'
+import {
+  createUser,
+  uploadUserAvatar,
+  deleteUserAvatar,
+  login,
+  logout,
+  logoutAll,
+  getCurrentUser,
+  getUserById,
+  updateUser,
+  deleteUser,
+  getAvatarByUserId,
+} from '../services/user-service.js'
+import { avatarUploader, fileUploadErrorHanler } from '../utils/user-utils.js'
 
-const router = express.Router();
+const userRouter = express.Router()
 
+userRouter.post('/users', createUser)
 
-router.post('/users', createUser)
+userRouter.post(
+  '/users/me/avatar',
+  auth,
+  avatarUploader.single('avatar'),
+  uploadUserAvatar,
+  fileUploadErrorHanler
+)
 
-router.post('/users/me/avatar', auth, avatarUploader.single('avatar'), uploadUserAvatar, fileUploadErrorHanler)
+userRouter.delete('/users/me/avatar', auth, deleteUserAvatar)
 
-router.delete('/users/me/avatar', auth, deleteUserAvatar)
+userRouter.post('/users/login', login)
 
-router.post('/users/login', login)
+userRouter.post('/users/logout', auth, logout)
 
-router.post('/users/logout', auth, logout)
+userRouter.post('/users/logout/all', auth, logoutAll)
 
-router.post('/users/logout/all', auth, logoutAll)
+userRouter.get('/users/me', auth, getCurrentUser)
 
-router.get('/users/me', auth, getCurrentUser)
+userRouter.get('/users/:id', getUserById)
 
-router.get('/users/:id', getUserById)
+userRouter.patch('/users/me', auth, updateUser)
 
-router.patch('/users/me', auth, updateUser)
+userRouter.delete('/users/me', auth, deleteUser)
 
-router.delete('/users/me', auth, deleteUser)
+userRouter.get('/users/:id/avatar', getAvatarByUserId)
 
-
-router.get('/users/:id/avatar', getAvatarByUserId)
-
-module.exports = router
+export { userRouter }
