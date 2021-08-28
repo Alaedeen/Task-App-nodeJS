@@ -12,12 +12,6 @@
     "format": "prettier --write \"**/*.js\"",
     "test": "env-cmd -f test.env jest --watch"
   },
-  "jest": {
-    "testEnvironment": "node",
-    "transform": {
-      "^.+\\.[t|j]sx?$": "babel-jest"
-    }
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
