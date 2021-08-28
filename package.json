@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
-    "debug": "env-cmd -f ./config/dev.env nodemon --inspect src/index.js",
-    "refactor": "prettier --write \"**/*.js\""
+    "dev": "env-cmd nodemon src/index.js",
+    "debug": "env-cmd nodemon --inspect src/index.js",
+    "format": "prettier --write \"**/*.js\""
   },
   "keywords": [],
   "author": "",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.12",
     "prettier": "2.3.2"
   }
 }
