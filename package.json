@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "env-cmd nodemon src/index.js",
-    "debug": "env-cmd nodemon --inspect src/index.js",
+    "dev": "env-cmd -f dev.env nodemon src/index.js",
+    "debug": "env-cmd -f dev.env nodemon --inspect src/index.js",
     "format": "prettier --write \"**/*.js\""
   },
   "keywords": [],
