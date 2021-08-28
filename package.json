@@ -9,7 +9,11 @@
     "dev": "env-cmd -f dev.env nodemon src/index.js",
     "debug": "env-cmd -f dev.env nodemon --inspect src/index.js",
     "lint": "eslint \"{src,test}/**/*.js\" --fix",
-    "format": "prettier --write \"**/*.js\""
+    "format": "prettier --write \"**/*.js\"",
+    "test": "env-cmd -f test.env jest --watch"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "keywords": [],
   "author": "",
@@ -33,7 +37,9 @@
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
+    "jest": "^27.1.0",
     "nodemon": "^2.0.12",
-    "prettier": "2.3.2"
+    "prettier": "2.3.2",
+    "supertest": "^6.1.6"
   }
 }
