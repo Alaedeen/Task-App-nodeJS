@@ -108,8 +108,6 @@ const updateUser = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
-  const _id = req.user._id
-
   try {
     await req.user.remove()
     sendAcountDeleteEmail(req.user.email, req.user.name)

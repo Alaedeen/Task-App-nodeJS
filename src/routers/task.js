@@ -14,7 +14,7 @@ taskRouter.post('/tasks', auth, addTask)
 
 // GET /tasks?completed=true
 // GET /tasks?limit=10&skip=20
-//GET /tasks?sortBy=createdAt:desc
+// GET /tasks?sortBy=createdAt:desc
 taskRouter.get('/tasks', auth, getTasks)
 
 taskRouter.get('/tasks/:id', auth, getTaskById)
