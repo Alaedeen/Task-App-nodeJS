@@ -9,4 +9,4 @@ app.use(express.json())
 app.use(userRouter)
 app.use(taskRouter)
 
-export {app}
+export { app }
