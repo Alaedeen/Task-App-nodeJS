@@ -2,11 +2,16 @@ import request from 'supertest'
 import { app } from '../src/app.js'
 import { test, beforeEach, expect, afterAll } from '@jest/globals'
 import { User } from '../src/models/user.js'
-import { userOneId, userOne, setupDatabase, disconnectFromDatabase } from "./fixtures/db.js";
+import {
+  userOneId,
+  userOne,
+  setupDatabase,
+  disconnectFromDatabase,
+} from './fixtures/db.js'
 
 beforeEach(setupDatabase)
 
-afterAll(disconnectFromDatabase);
+afterAll(disconnectFromDatabase)
 
 test('Should signup a new user', async () => {
   const response = await request(app)
@@ -86,33 +91,43 @@ test('Should not delete profile for unauthenticated user', async () => {
 })
 
 test('Should upload avatar image', async () => {
-  await request(app).post('/users/me/avatar')
-  .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
-  .attach('avatar', 'tests/fixtures/profile-pic.png')
-  .expect(200)
+  await request(app)
+    .post('/users/me/avatar')
+    .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+    .attach('avatar', 'tests/fixtures/profile-pic.png')
+    .expect(200)
 
   const user = await User.findById(userOneId)
   expect(user.avatar).toEqual(expect.any(Buffer))
 })
 
 test('Should update valid user fields', async () => {
-  await request(app).patch('/users/me')
-  .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
-  .send({
-    name: 'dummy user'
-  })
-  .expect(200)
+  await request(app)
+    .patch('/users/me')
+    .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+    .send({
+      name: 'dummy user',
+    })
+    .expect(200)
 
   const user = await User.findById(userOneId)
   expect(user.name).toBe('dummy user')
 })
 
-
 test('Should not update invalid user fields', async () => {
-  await request(app).patch('/users/me')
-  .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
-  .send({
-    location: 'Sousse'
-  })
-  .expect(400)
+  await request(app)
+    .patch('/users/me')
+    .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+    .send({
+      location: 'Sousse',
+    })
+    .expect(400)
 })
+
+//
+// User Test Ideas
+//
+// Should not signup user with invalid name/email/password
+// Should not update user if unauthenticated
+// Should not update user with invalid name/email/password
+// Should not delete user if unauthenticated
