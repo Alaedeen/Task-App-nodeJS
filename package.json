@@ -10,7 +10,7 @@
     "debug": "env-cmd -f dev.env nodemon --inspect src/index.js",
     "lint": "eslint \"{src,test}/**/*.js\" --fix",
     "format": "prettier --write \"**/*.js\"",
-    "test": "env-cmd -f test.env jest --watch"
+    "test": "env-cmd -f test.env jest --watch --runInBand"
   },
   "keywords": [],
   "author": "",
