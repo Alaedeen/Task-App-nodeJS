@@ -13,4 +13,8 @@ Then:
 npm install
 npm run dev
 ```
+## Test 
+The app is hosted on heroku you can test it! 
+check the documentation of the api: 
+[Link to APIs Documentation](https://documenter.getpostman.com/view/13367410/TzzHnDop)
 
